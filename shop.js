@@ -1,13 +1,21 @@
-const express=require('express');
+const path = require('path');
 
-const router=express.Router();
-router.use((req,res,next)=>{
-    res.status(404).send('<h1>Page Not Found</h1>')
-  })
+const express = require('express');
 
+const shopController = require('../controllers/shop');
 
-router.use('/', (req, res, next) => {
-    res.send('<h1>Hello from Express!</h1>');
-  });
+const router = express.Router();
 
-module.exports=router;
+router.get('/', shopController.getIndex);
+
+router.get('/products', shopController.getProducts);
+
+router.get('/products/:productId', shopController.getProduct);
+
+router.get('/cart', shopController.getCart);
+
+router.get('/orders', shopController.getOrders);
+
+router.get('/checkout', shopController.getCheckout);
+
+module.exports = router;
